@@ -1,4 +1,4 @@
-name: Build Odfiz APK
+name: Build & Sign Odfiz APK
 on: [push]
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '21'  # Diupdate dari 17 ke 21
+          java-version: '21'
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
       - name: Capacitor Sync
@@ -22,8 +22,17 @@ jobs:
         run: |
           cd android
           ./gradlew assembleRelease
-      - name: Upload APK
+      - name: Sign APK
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: android/app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: Odfiz-Release-APK
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          name: Odfiz-Signed-APK
+          path: ${{ steps.sign_app.outputs.signedReleaseFile }}
