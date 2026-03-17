@@ -27,8 +27,8 @@ jobs:
 
       - name: Manual Sign APK
         run: |
-          # Menggunakan printf untuk menghindari masalah karakter baris baru
-          printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > release.keystore
+          # Perhatikan flag -di (ignore garbage)
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -di > release.keystore
           
           ZIPALIGN=$(find $ANDROID_HOME/build-tools -name zipalign | head -n 1)
           APKSIGNER=$(find $ANDROID_HOME/build-tools -name apksigner | head -n 1)
