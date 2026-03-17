@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22  # Diupdate ke versi 22
       - name: Install Libs
         run: npm install
       - uses: actions/setup-java@v4
