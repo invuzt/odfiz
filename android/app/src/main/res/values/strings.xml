@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">OdfizApp</string>
+    <string name="title_activity_main">OdfizApp</string>
+    <string name="package_name">com.odfiz.app</string>
+    <string name="custom_url_scheme">com.odfiz.app</string>
+</resources>

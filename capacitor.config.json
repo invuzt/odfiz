@@ -1,0 +1,6 @@
+{
+  "appId": "com.odfiz.app",
+  "appName": "OdfizApp",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

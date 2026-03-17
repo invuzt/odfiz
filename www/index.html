@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odfiz Auth</title>
+    <style>
+        body { font-family: sans-serif; background: #eef2f3; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 85%; max-width: 320px; }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; outline: none; }
+        button { width: 100%; padding: 12px; background: #3498db; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; }
+        button:hover { background: #2980b9; }
+        .toggle { text-align: center; margin-top: 15px; font-size: 13px; color: #7f8c8d; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2 id="title">Login Odfiz</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="pass" placeholder="Password">
+        <button id="btnAction" onclick="handleSubmit()">Masuk</button>
+        <div class="toggle" id="toggleText" onclick="toggleMode()">Belum punya akun? Daftar</div>
+    </div>
+    <script>
+        let isLogin = true;
+        function toggleMode() {
+            isLogin = !isLogin;
+            document.getElementById('title').innerText = isLogin ? 'Login Odfiz' : 'Daftar Odfiz';
+            document.getElementById('btnAction').innerText = isLogin ? 'Masuk' : 'Daftar';
+            document.getElementById('toggleText').innerText = isLogin ? 'Belum punya akun? Daftar' : 'Sudah punya akun? Login';
+        }
+        function handleSubmit() {
+            const email = document.getElementById('email').value;
+            alert('Aksi ' + (isLogin ? 'Login' : 'Daftar') + ' untuk: ' + email);
+        }
+    </script>
+</body>
+</html>
